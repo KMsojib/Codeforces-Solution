@@ -1,5 +1,7 @@
 /*----------------------------------------MY Aproach---------------------------------------------*/
 
+// Time compelxity: O(n)
+// Space complexity: O(1)
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long int ll;
