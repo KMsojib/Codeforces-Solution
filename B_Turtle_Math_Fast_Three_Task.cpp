@@ -7,23 +7,44 @@ int main()
     fast_io;
     int t;  cin>>t;
     while(t--){
-        int n;  cin>>n;
-        map<int,int>mp;
-        int sum=0;
+        ll n;   cin>>n;
+        ll sum=0;
+        vector<int>a(n);
         for(int i=0;i<n;i++){
-            int x;  cin>>x;
-            sum+=x;
-            mp[x%3]++;
+            cin>>a[i];
+            sum+=a[i];
         }
 
-        if(sum%3 == 0){
+        if(sum % 3 == 0){
             cout<<"0\n";
         }
-        else if(sum%3 == 2 || sum%3 == 1 && mp[sum%3]){
-            cout<<"1\n";
+        else if(sum<3){
+            cout<<n<<"\n";
         }
         else{
-            cout<<"2\n";
+            bool f = true;
+            ll temp = sum;
+            for(int i=0;i<n;i++){
+                sum-=a[i];
+                if(sum%3==0){
+                    f=true;
+                    break;
+                }
+            }
+            if(f){
+                cout<<"1\n";
+            }
+            else{
+                ll cn = temp%3;
+                cn=3-cn;
+                if(cn<2){
+                    cout<<"1\n";
+                }
+                else{
+                    cout<<"2\n";
+                }
+            }
+            
         }
     }
 

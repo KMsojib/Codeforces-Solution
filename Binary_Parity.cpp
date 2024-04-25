@@ -8,18 +8,13 @@ int main()
     int t;  cin>>t;
     while(t--){
         int n;  cin>>n;
-        ll sum=0;
-        for(int i=0;i<n;i++){
-            int x;  cin>>x;
-            if(x<0){
-                sum+=x*-1;
-            }
-            else{
-                sum+=x;
-            }
+        int count = __builtin_popcount(n);
+        if(count%2==0){
+            cout<<"EVEN\n";
         }
-
-        cout<<sum<<endl;
+        else{
+            cout<<"ODD\n";
+        }
     }
 
     return 0;
