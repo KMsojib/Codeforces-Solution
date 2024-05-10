@@ -1,68 +1,39 @@
-//https://codeforces.com/problemset/problem/1692/F
-
-
 #include<bits/stdc++.h>
 using namespace std;
 typedef long long int ll;
-#define fast_io ios_base::sync_with_stdio(false);cin.tie(NULL)
 
-
-bool is_3(ll sum)
+void solve()
 {
-    string s = to_string(sum);
-    if(s[s.size()-1] =='3')
-    {
-        return true;
-    }
-    else
-    {
-        return false;
-    }
-}
+    int n;  cin>>n;
+     int cn[10]={};
+        for(int i=0;i<n;i++){
+            int x;  cin>>x;
+            cn[x%10]++;
+        }
 
-void solve(){
-    ll n;
-    cin>>n;
-    vector<int>a(n);
-    for(int i=0;i<n;i++)
-    {
-        cin>>a[i];
-    }
-
-    //brute force apply
-    bool f = false;
-    for(int i=0;i<n;i++)
-    {
-        for(int j=i+1;j<n;j++)
-        {
-            ll sum = a[i]+a[j]+a[j+1];
-            if(is_3(sum))
-            {
-                f=true;
-                break;
+        vector<int>ans;
+        for(int i=0;i<10;i++){
+            for(int j=0;j<min(cn[i],3);j++){
+                ans.push_back(i);
             }
-            
-            
         }
-        if(f)
-        {
-            break;
+        bool f = false;
+        int len = ans.size();
+        for(int i=0;i<len;i++){
+            for(int j=i+1;j<len;j++){
+                for(int k=j+1;k<len;k++){
+                    if((ans[i]+ans[j]+ans[k])%10==3){
+                        cout<<"YES"<<endl;
+                        return;
+                    }
+                }
+            }
         }
-    }
-
-    if(f)
-    {
-        cout<<"YES\n";
-    }
-    else
-    {
-        cout<<"NO\n";
-    }
+        cout<<"NO"<<endl;
 }
 
 int main()
 {
-    fast_io;
     int t;  cin>>t;
     while(t--){
         solve();
