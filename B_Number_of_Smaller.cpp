@@ -10,7 +10,6 @@ int main()
     int n, m;
     cin >> n >> m;
     int a[n], b[m];
-    vector<int> c;
 
     for (int i = 0; i < n; i++)
     {
@@ -21,24 +20,20 @@ int main()
         cin >> b[j];
     }
 
-    int l = 0, r = 0;
-    while (l < n || r < m)
+    vector<int> ans;
+    int j = 0;
+    for (int i = 0; i < m; i++)
     {
-        if (r == m || l < n && a[l] < b[r])
+        while (j < n && a[j] < b[i])
         {
-            c.push_back(a[l]);
-            l++;
+            j++;
         }
-        else
-        {
-            c.push_back(b[r]);
-            r++;
-        }
+        ans.push_back(j);
     }
 
-    for (int i = 0; i < c.size(); i++)
+    for (auto x : ans)
     {
-        cout << c[i] << " ";
+        cout << x << " ";
     }
     cout << endl;
     return 0;
