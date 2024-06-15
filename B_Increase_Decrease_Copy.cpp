@@ -16,6 +16,7 @@ typedef vector<int> vi;
 typedef vector<pll> vpll;
 typedef vector<string> vs;
 
+#define sz(a) (int)a.size()
 #define ff first
 #define ss second
 #define pb push_back
@@ -36,19 +37,33 @@ bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)re
 
 void solve(){
     int n;  cin>>n;
-    n--;
-    vi a(n);
+    vi a(n),b(n+1);
     for(int i=0;i<n;i++){
         cin>>a[i];
     }
-
-    int x = 1000;
-    cout<<x<<" ";
-    for(int i=0;i<n;i++){
-        x += a[i];
-        cout<<x<<" ";
+    for(int i=0;i<n+1;i++){
+        cin>>b[i];
     }
-    cout<<endl;
+    int cn = 0;
+    bool f=false;
+    ll temp = b.back(),x = INF;
+    for(int i=0;i<n;i++){
+        cn += abs(a[i]-b[i]);
+        if((temp >= min(a[i],b[i])) && (temp <= max(a[i],b[i]))){
+            f=true;
+        }
+        x = min(x,abs(temp - a[i]));
+        x = min(x,abs(temp - b[i]));
+    }
+
+    if(!f){
+        cn += x+1;
+    }
+    else{
+        cn++;
+    }
+    cout<<cn<<endl;
+
 }
 
 
@@ -61,4 +76,3 @@ int main(){
     }
     return 0;
 }
- 

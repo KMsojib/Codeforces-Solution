@@ -16,6 +16,7 @@ typedef vector<int> vi;
 typedef vector<pll> vpll;
 typedef vector<string> vs;
 
+#define sz(a) (int)a.size()
 #define ff first
 #define ss second
 #define pb push_back
@@ -33,22 +34,47 @@ bool desen(const pair<int,int> &a,const pair<int,int> &b){return (a.second > b.s
 
 bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
 
+ll inverse(vll &a){
+    ll n = sz(a)-1;
+    ll zero = 0, ans = 0;
+    for(ll i = n;i>=0;i--){
+        if(a[i]==0){
+            zero++;
+        }
+        else{
+            ans+=zero;
+        }
+    }
+    return ans;
+}
 
 void solve(){
-    int n;  cin>>n;
-    n--;
-    vi a(n);
+    ll n;   cin>>n;
+    vll a(n);
     for(int i=0;i<n;i++){
         cin>>a[i];
     }
 
-    int x = 1000;
-    cout<<x<<" ";
+    ll ans = inverse(a);
     for(int i=0;i<n;i++){
-        x += a[i];
-        cout<<x<<" ";
+        if(a[i]==0){
+            a[i]=1;
+            ans = max(ans,inverse(a));
+            a[i]=0;
+            break;
+        }
     }
-    cout<<endl;
+
+    for(ll i=n-1;i>=0;i--){
+        if(a[i]==1){
+            a[i]=0;
+            ans = max(ans,inverse(a));
+            a[i]=1;
+            break;
+        }
+    }
+    cout<<ans<<endl;
+    
 }
 
 
@@ -62,3 +88,21 @@ int main(){
     return 0;
 }
  
+
+/*
+ maximum inversion:
+    1. if flip 1 then flip array er last e korle optimal
+    2. if flip 0 then flib array er first e korle optimal
+    
+    exmaple:
+    1 0 1 1 0 0 0 1
+    flip 2nd 0 then array look:
+        1 1 1 1 0 0 0 1
+        ans = 12
+    flip nth index then array look:
+        1 0 1 1 0 0 0 0
+        ans = 13
+
+    so ans should be maximum--> 13
+
+*/

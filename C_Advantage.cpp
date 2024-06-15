@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 using ll = long long;
 using lld = long double;
 using ull = unsigned long long;
@@ -36,17 +37,20 @@ bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)re
 
 void solve(){
     int n;  cin>>n;
-    n--;
-    vi a(n);
+    vector<int>a(n);
     for(int i=0;i<n;i++){
         cin>>a[i];
     }
 
-    int x = 1000;
-    cout<<x<<" ";
+    vi temp = a;
+    sort(temp.begin(),temp.end());
     for(int i=0;i<n;i++){
-        x += a[i];
-        cout<<x<<" ";
+        if(a[i]==temp[n-1]){
+            cout<<a[i]-temp[n-2]<<" ";
+        }
+        else{
+            cout<<a[i]-temp[n-1]<<" ";
+        }
     }
     cout<<endl;
 }
@@ -62,3 +66,17 @@ int main(){
     return 0;
 }
  
+ /*
+                         -------------Fahmid Bin Mosharaf-----_______
+                        /''''''''''(______O] ----------____  \______/]_
+     __...---'"""\_ --''        Feni university     ___________@ -> ->  -> - --  - -- - ---- ->>
+ |'''                   ._   _______________=---------"""""""
+ |                ..--''|   l L |_l   |
+ |          ..--''      .  /-___j '   '
+ |    ..--''           /  ,       '   '
+ |--''                /           `    \
+                      L__'         \    -
+                                    -    '-.
+                                     '.    /
+                                       '-./
+*/

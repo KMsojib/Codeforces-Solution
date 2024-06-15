@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+
 using ll = long long;
 using lld = long double;
 using ull = unsigned long long;
@@ -36,19 +37,10 @@ bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)re
 
 void solve(){
     int n;  cin>>n;
-    n--;
-    vi a(n);
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-    }
-
-    int x = 1000;
-    cout<<x<<" ";
-    for(int i=0;i<n;i++){
-        x += a[i];
-        cout<<x<<" ";
-    }
-    cout<<endl;
+    string s;   cin>>s;
+    sort(s.begin(),s.end());
+    int x = s.back()-'a'+1;
+    cout<<x<<endl;
 }
 
 

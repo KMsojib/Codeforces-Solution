@@ -16,6 +16,7 @@ typedef vector<int> vi;
 typedef vector<pll> vpll;
 typedef vector<string> vs;
 
+#define sz(a) (int)a.size()
 #define ff first
 #define ss second
 #define pb push_back
@@ -34,21 +35,34 @@ bool desen(const pair<int,int> &a,const pair<int,int> &b){return (a.second > b.s
 bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
 
 
-void solve(){
+int solve(){
     int n;  cin>>n;
-    n--;
-    vi a(n);
-    for(int i=0;i<n;i++){
-        cin>>a[i];
+    ll s1 = 0, s2 = 0,x = 2, y = 3;
+    for(int i=1;i<=n;i++){
+        int temp = x*i;
+        if(temp <= n){
+            s1 += x*i;
+        }
+        else{
+            break;
+        }
     }
 
-    int x = 1000;
-    cout<<x<<" ";
-    for(int i=0;i<n;i++){
-        x += a[i];
-        cout<<x<<" ";
+    for(int i=1;i<=n;i++){
+        int temp = y*i;
+        if(temp <= n){
+            s2 += i*y;
+        }
+        else{
+            break;
+        }
     }
-    cout<<endl;
+    if(s1 > s2){
+        return 2;
+    }
+    else{
+        return 3;
+    }
 }
 
 
@@ -57,7 +71,7 @@ int main(){
     cin.tie(NULL); cout.tie(NULL);
     int t;  cin>>t;
     while(t--){
-        solve();
+        cout<<solve()<<endl;
     }
     return 0;
 }

@@ -36,19 +36,25 @@ bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)re
 
 void solve(){
     int n;  cin>>n;
-    n--;
     vi a(n);
     for(int i=0;i<n;i++){
         cin>>a[i];
     }
 
-    int x = 1000;
-    cout<<x<<" ";
-    for(int i=0;i<n;i++){
-        x += a[i];
-        cout<<x<<" ";
+    bool ok = true;
+    int in = 0, dc = 0;
+    for(int i=1;i<n;i++){
+        if(a[i]>a[i-1]){
+            in++;
+        }
+        if(a[i]<a[i-1]){
+            dc++;
+            if(in){
+                ok = false;
+            }
+        }
     }
-    cout<<endl;
+    cout<<(ok? "YES\n":"NO\n");
 }
 
 

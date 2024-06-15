@@ -9,13 +9,7 @@ using ull = unsigned long long;
 const lld pi= 3.141592653589793238;
 const ll INF= LONG_LONG_MAX;
 const ll mod=1000000007;
-
-typedef pair<ll, ll> pll;
-typedef vector<ll> vll;
-typedef vector<int> vi;
-typedef vector<pll> vpll;
-typedef vector<string> vs;
-
+#define sz(a) (int)a.size()
 #define ff first
 #define ss second
 #define pb push_back
@@ -35,20 +29,33 @@ bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)re
 
 
 void solve(){
-    int n;  cin>>n;
-    n--;
-    vi a(n);
+    int n,m,h;  cin>>n>>m>>h;
+    vector<vector<int>>vp(n);
     for(int i=0;i<n;i++){
-        cin>>a[i];
+        vector<int>x;
+        for(int j=0;j<m;j++){
+            cin>>x[j];
+        }
+        sort(x.begin(),x.end());
+        vp[i]=x;
     }
 
-    int x = 1000;
-    cout<<x<<" ";
     for(int i=0;i<n;i++){
-        x += a[i];
-        cout<<x<<" ";
+        for(int j=0;j<vp[i].size();j++){
+            cout<<vp[i][j]<<" ";
+        }
+        cout<<endl;
     }
-    cout<<endl;
+    // int rudop = 0;
+    // for(int i=0;i<vp[0].size();i++){
+    //     rudop += vp[0][i];
+    //     if(rudop >=h){
+    //         rudop -= vp[0][i];
+    //         break;
+    //     }
+    // }
+    // cout<<rudop<<endl;
+
 }
 
 

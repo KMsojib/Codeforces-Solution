@@ -16,6 +16,7 @@ typedef vector<int> vi;
 typedef vector<pll> vpll;
 typedef vector<string> vs;
 
+#define sz(a) (int)a.size()
 #define ff first
 #define ss second
 #define pb push_back
@@ -35,27 +36,38 @@ bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)re
 
 
 void solve(){
-    int n;  cin>>n;
-    n--;
-    vi a(n);
-    for(int i=0;i<n;i++){
-        cin>>a[i];
+    {
+        string s1,s2;
+		cin>>s1>>s2;
+		int flag=1;
+		int i=1,j=1;
+		if(s1[0]!=s2[0]) flag=0;
+		for(;i<s2.size();i++){
+			if(s2[i]!=s2[i-1]&&s2[i]!=s1[j]){
+                flag=0;
+            }
+			else if(s2[i]==s1[j]){
+                j++;
+            }
+		}
+		if(j<s1.size()) {
+            flag=0;
+        }
+		if(flag) {
+            cout<<"YES\n";
+        }
+		else{
+            cout<<"NO\n";
+        }
     }
-
-    int x = 1000;
-    cout<<x<<" ";
-    for(int i=0;i<n;i++){
-        x += a[i];
-        cout<<x<<" ";
-    }
-    cout<<endl;
+    
 }
 
 
 int main(){
     ios_base::sync_with_stdio(false);
     cin.tie(NULL); cout.tie(NULL);
-    int t;  cin>>t;
+    int t=1;  cin>>t;
     while(t--){
         solve();
     }
