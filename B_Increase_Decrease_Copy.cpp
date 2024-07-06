@@ -16,54 +16,27 @@ typedef vector<int> vi;
 typedef vector<pll> vpll;
 typedef vector<string> vs;
 
-#define sz(a) (int)a.size()
-#define ff first
-#define ss second
-#define pb push_back
-#define mp make_pair
-#define YES cout<<"YES\n";
-#define NO cout<<"NO\n"
-#define vr(v) v.begin(),v.end()
-#define rv(v) v.end(),v.begin()
-
-ll gcd(ll a, ll b){if (b == 0)return a;return gcd(b, a % b);} //__gcd
-ll lcm(ll a, ll b){return (a/gcd(a,b)*b);} // lcm
-
-bool assen(const pair<int,int> &a,const pair<int,int> &b){return (a.second < b.second);}
-bool desen(const pair<int,int> &a,const pair<int,int> &b){return (a.second > b.second);}
-
-bool isPrime(ll n){if(n<=1)return false;if(n<=3)return true;if(n%2==0||n%3==0)return false;for(int i=5;i*i<=n;i=i+6)if(n%i==0||n%(i+2)==0)return false;return true;}
-
-
 void solve(){
-    int n;  cin>>n;
-    vi a(n),b(n+1);
+    ll n;  cin>>n;
+    vll a(n),b(n+1);
+
+    for(int i=0;i<n;i++)    cin>>a[i];
+    for(int i=0;i<n+1;i++)  cin>>b[i];
+    ll ans = 0;
     for(int i=0;i<n;i++){
-        cin>>a[i];
+        ans += abs(a[i]-b[i]);
     }
-    for(int i=0;i<n+1;i++){
-        cin>>b[i];
-    }
-    int cn = 0;
-    bool f=false;
-    ll temp = b.back(),x = INF;
+
+    ll last_val = b[n],update_last = 1e9;
     for(int i=0;i<n;i++){
-        cn += abs(a[i]-b[i]);
-        if((temp >= min(a[i],b[i])) && (temp <= max(a[i],b[i]))){
-            f=true;
+        update_last = min(update_last,min(abs(last_val-b[i]),abs(last_val - a[i])));
+        if(last_val >= min(a[i],b[i]) && last_val <= max(a[i],b[i])){
+            update_last = 0;
         }
-        x = min(x,abs(temp - a[i]));
-        x = min(x,abs(temp - b[i]));
     }
 
-    if(!f){
-        cn += x+1;
-    }
-    else{
-        cn++;
-    }
-    cout<<cn<<endl;
-
+    ans += update_last+1;
+    cout<<ans<<endl;
 }
 
 
@@ -76,3 +49,4 @@ int main(){
     }
     return 0;
 }
+ 
